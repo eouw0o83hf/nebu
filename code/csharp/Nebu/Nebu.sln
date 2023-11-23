@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nobu.Core", "Nobu.Core\Nobu.Core.csproj", "{EDAFD452-8A11-4BD8-8F96-B0DDB2DAD1BA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebu.Core", "Nebu.Core\Nebu.Core.csproj", "{EDAFD452-8A11-4BD8-8F96-B0DDB2DAD1BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nobu.Core.Tests", "Nobu.Core.Tests\Nobu.Core.Tests.csproj", "{3FD5F2F3-2FC6-495F-998A-6B234FED51CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebu.Core.Tests", "Nebu.Core.Tests\Nebu.Core.Tests.csproj", "{3FD5F2F3-2FC6-495F-998A-6B234FED51CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nobu.Api", "Nobu.Api\Nobu.Api.csproj", "{AEDD59A7-ED7D-4DC1-9852-34DC85561F28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebu.Api", "Nebu.Api\Nebu.Api.csproj", "{AEDD59A7-ED7D-4DC1-9852-34DC85561F28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nobu.Api.Tests", "Nobu.Api.Tests\Nobu.Api.Tests.csproj", "{553E224B-2A6D-4C9A-BAE6-F57C807CE00C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nebu.Api.Tests", "Nebu.Api.Tests\Nebu.Api.Tests.csproj", "{553E224B-2A6D-4C9A-BAE6-F57C807CE00C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

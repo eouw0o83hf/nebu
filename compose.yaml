@@ -1,0 +1,13 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+  api:
+    build:
+      context: ./code/csharp/Nebu
+      dockerfile: Dockerfile.api
+    ports:
+      - "8080:8080"

@@ -1,4 +1,4 @@
-namespace Nobu.Api.Tests;
+namespace Nebu.Api.Tests;
 
 public class UnitTest1
 {

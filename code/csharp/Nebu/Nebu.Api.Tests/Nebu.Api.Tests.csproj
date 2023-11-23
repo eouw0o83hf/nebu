@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nobu.Core\Nobu.Core.csproj" />
+    <ProjectReference Include="..\Nebu.Api\Nebu.Api.csproj" />
   </ItemGroup>
 
 </Project>

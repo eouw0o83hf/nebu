@@ -1,5 +1,11 @@
 build:
-	dotnet build ./code/csharp/Nobu
+	dotnet build ./code/csharp/Nebu
 
 test:
-	dotnet test ./code/csharp/Nobu
+	dotnet test ./code/csharp/Nebu
+
+compose-up:
+	docker compose up
+
+compose-down:
+	docker compose down

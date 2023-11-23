@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nobu.Core\Nobu.Core.csproj" />
+    <ProjectReference Include="..\Nebu.Core\Nebu.Core.csproj" />
   </ItemGroup>
 
 </Project>
