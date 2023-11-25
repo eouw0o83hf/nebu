@@ -1,3 +1,5 @@
+## build/test/run
+
 build:
 	dotnet build ./code/csharp/Nebu
 
@@ -6,6 +8,13 @@ test:
 
 api:
 	dotnet run --project ./code/csharp/Nebu/Nebu.Api/Nebu.Api.csproj
+
+
+## persistence
+
+# make ef-migration migration=MyMigrationName
+ef-migration:
+	dotnet ef migrations add $(migration) --project ./code/csharp/Nebu/Nebu.Api/Nebu.Api.csproj
 
 
 ## compose
