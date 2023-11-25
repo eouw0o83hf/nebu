@@ -31,4 +31,4 @@ ci-build:
 	dotnet build ./code/csharp/Nebu --no-restore
 
 ci-test:
-	dotnet text ./code/csharp/Nebu --no-build --verbosity normal
+	dotnet test ./code/csharp/Nebu --no-build --verbosity normal
