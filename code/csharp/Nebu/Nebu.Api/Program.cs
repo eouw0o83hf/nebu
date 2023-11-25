@@ -1,19 +1,19 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Migrations.Internal;
-using Microsoft.VisualBasic;
 using Nebu.Api.Ef;
+using Nebu.Api.Models.Users;
+using Nebu.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<NebuContext>(o =>
     o.UseNpgsql(
         builder.Configuration.GetConnectionString("Nebu")));
 
+builder.Services.AddTransient<IUserService, UserService>();
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
@@ -23,53 +23,13 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
 }
 
-// Configure the HTTP request pipeline.
-// if (app.Environment.IsDevelopment())
-// {
 app.UseSwagger();
 app.UseSwaggerUI();
-// }
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/users", (NebuContext db) =>
-{
-    db.Users.Add(new User
-    {
-        Name = "test"
-    });
-    db.SaveChanges();
-    var u = db.Users.ToList();
-    return u;
-}).WithName("GetUsers").WithOpenApi();
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
-
-
 app.MapSwagger();
-//.RequireAuthorization()
+app.MapControllers();
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
