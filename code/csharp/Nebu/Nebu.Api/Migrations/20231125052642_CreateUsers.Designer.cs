@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Nebu.Api.Migrations
 {
     [DbContext(typeof(NebuContext))]
-    [Migration("20231123195842_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231125052642_CreateUsers")]
+    partial class CreateUsers
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,17 +25,23 @@ namespace Nebu.Api.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Nebu.Api.Ef.User", b =>
+            modelBuilder.Entity("Nebu.Api.Ef.EfUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
+
+                    b.Property<string>("ApiKey")
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ApiKey")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
