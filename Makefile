@@ -1,4 +1,4 @@
-## build/test/run
+## basic operations
 
 build:
 	dotnet build ./code/csharp/Nebu
@@ -21,7 +21,7 @@ ef-migration:
 
 # composes dependencies
 compose-deps:
-	docker compose up --build -d db
+	docker compose up -d db minio
 
 # composes api and its dependencies
 compose-api:
