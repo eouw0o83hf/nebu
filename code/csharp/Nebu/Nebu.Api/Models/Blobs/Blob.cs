@@ -5,12 +5,18 @@ namespace Nebu.Api.Models.Blobs;
 public record BlobReadModel(
     Guid Id,
     Guid BucketId,
-    string Key)
-{
-}
+    Guid Key,
+    string Filename,
+    long SizeBytes)
+{ }
 
 public record BlobWriteModel
 {
     [Required]
-    public string? Key { get; set; }
+    public IFormFile? File { get; set; }
 }
+
+public record File(
+    string Filename,
+    Stream Content)
+{ }

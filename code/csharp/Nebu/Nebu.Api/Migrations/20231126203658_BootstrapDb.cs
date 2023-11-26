@@ -6,11 +6,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Nebu.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class BucketsAndBlobs : Migration
+    public partial class BootstrapDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    ApiKey = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Buckets",
                 columns: table => new
@@ -35,7 +48,9 @@ namespace Nebu.Api.Migrations
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     BucketId = table.Column<Guid>(type: "uuid", nullable: false),
-                    Key = table.Column<string>(type: "text", nullable: false)
+                    Key = table.Column<Guid>(type: "uuid", nullable: false),
+                    Filename = table.Column<string>(type: "text", nullable: false),
+                    SizeBytes = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -48,14 +63,21 @@ namespace Nebu.Api.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Blobs_BucketId",
+                name: "IX_Blobs_BucketId_Key",
                 table: "Blobs",
-                column: "BucketId");
+                columns: new[] { "BucketId", "Key" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Buckets_UserId",
                 table: "Buckets",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_ApiKey",
+                table: "Users",
+                column: "ApiKey",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -66,6 +88,9 @@ namespace Nebu.Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "Buckets");
+
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }
