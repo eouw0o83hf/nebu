@@ -1,5 +1,6 @@
 using System.Reflection.Metadata;
 using Microsoft.EntityFrameworkCore;
+using Minio;
 using Nebu.Api.Ef;
 using Nebu.Api.Models.Blobs;
 using Nebu.Api.Models.Buckets;
@@ -14,6 +15,10 @@ builder.Services.AddDbContext<NebuContext>(o =>
     o.UseNpgsql(
         builder.Configuration.GetConnectionString("Nebu")));
 
+// temp local secret values
+builder.Services.AddMinio(cfg => cfg
+    .WithCredentials("3PEZwSncibPRafAEVVqE", "zWQSfoxyxTldqQJuwcCK7nF2ii6n25AzFevDcH7W")
+    .WithSSL(false));
 
 builder.Services.AddTransient<IBlobService, BlobService>();
 builder.Services.AddTransient<IBucketService, BucketService>();

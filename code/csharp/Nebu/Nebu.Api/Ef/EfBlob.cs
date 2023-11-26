@@ -1,9 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Nebu.Api.Ef;
 
 [Table("Blobs")]
+[Index(nameof(BucketId), nameof(Key), IsUnique = true)]
 public class EfBlob
 {
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -12,5 +14,7 @@ public class EfBlob
     public Guid BucketId { get; set; }
     public EfBucket? Bucket { get; set; }
 
-    public required string Key { get; set; }
+    public Guid Key { get; set; }
+    public required string Filename { get; set; }
+    public required long SizeBytes { get; set; }
 }

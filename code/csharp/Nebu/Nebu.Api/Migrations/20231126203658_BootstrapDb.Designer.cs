@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Nebu.Api.Migrations
 {
     [DbContext(typeof(NebuContext))]
-    [Migration("20231126025946_BucketsAndBlobs")]
-    partial class BucketsAndBlobs
+    [Migration("20231126203658_BootstrapDb")]
+    partial class BootstrapDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,13 +34,20 @@ namespace Nebu.Api.Migrations
                     b.Property<Guid>("BucketId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Key")
+                    b.Property<string>("Filename")
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<Guid>("Key")
+                        .HasColumnType("uuid");
+
+                    b.Property<long>("SizeBytes")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("BucketId");
+                    b.HasIndex("BucketId", "Key")
+                        .IsUnique();
 
                     b.ToTable("Blobs");
                 });
