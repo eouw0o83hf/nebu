@@ -1,6 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Nebu.Api.Ef;
 using Nebu.Api.Models.Users;
 
 namespace Nebu.Api.Controllers;
