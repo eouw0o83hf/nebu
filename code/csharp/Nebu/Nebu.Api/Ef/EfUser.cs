@@ -12,4 +12,6 @@ public class EfUser
     public Guid Id { get; set; }
     public string Name { get; set; } = "";
     public string? ApiKey { get; set; }
+
+    public ICollection<EfBucket>? Buckets { get; set; }
 }

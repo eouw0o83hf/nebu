@@ -1,5 +1,8 @@
+using System.Reflection.Metadata;
 using Microsoft.EntityFrameworkCore;
 using Nebu.Api.Ef;
+using Nebu.Api.Models.Blobs;
+using Nebu.Api.Models.Buckets;
 using Nebu.Api.Models.Users;
 using Nebu.Api.Services;
 
@@ -11,6 +14,9 @@ builder.Services.AddDbContext<NebuContext>(o =>
     o.UseNpgsql(
         builder.Configuration.GetConnectionString("Nebu")));
 
+
+builder.Services.AddTransient<IBlobService, BlobService>();
+builder.Services.AddTransient<IBucketService, BucketService>();
 builder.Services.AddTransient<IUserService, UserService>();
 
 builder.Services.AddControllers();
