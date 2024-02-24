@@ -6,6 +6,7 @@ using Nebu.Api.Models.Blobs;
 using Nebu.Api.Models.Buckets;
 using Nebu.Api.Models.Users;
 using Nebu.Api.Services;
+using Swashbuckle.AspNetCore.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,7 @@ builder.Services.AddMinio(cfg => cfg
 
 builder.Services.AddTransient<IBlobService, BlobService>();
 builder.Services.AddTransient<IBucketService, BucketService>();
+builder.Services.AddTransient<SwaggerService>();
 builder.Services.AddTransient<IUserService, UserService>();
 
 builder.Services.AddControllers();
@@ -41,6 +43,14 @@ app.UseHttpsRedirection();
 
 app.MapSwagger();
 app.MapControllers();
+
+// dump swagger to filesystem on api start so it's always fresh
+// and we can verify in ci that nothing changed
+using (var scope = app.Services.CreateScope())
+{
+    var swag = scope.ServiceProvider.GetRequiredService<SwaggerService>();
+    swag.WriteSwaggerDocs("../../../contracts/api.json");
+}
 
 app.Run();
 
