@@ -1,3 +1,9 @@
 {
-  "cSpell.words": ["Minio", "Nebu", "Npgsql"]
+  "cSpell.words": [
+    "Minio",
+    "Nebu",
+    "Npgsql",
+    "Swashbuckle",
+    "tanstack"
+  ]
 }
